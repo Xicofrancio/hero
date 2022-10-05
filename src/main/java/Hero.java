@@ -1,49 +1,37 @@
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.screen.Screen;
 
+import java.io.IOException;
+
 public class Hero {
     private Screen screen;
-    private int x = 10;
-    private int y = 10;
+    private Position position;
 
-    public Hero(int x,int y){
-        x=x;
-        y=y;
+    
+
+    public Hero() {
+
+
+    }
+    public void setPosition(Position p){
+        position.setX(position.getX());
+        position.setY(position.getY());
+    }
+    public void draw(Screen screen) throws IOException {
+        screen.setCharacter(position.getX(), position.getY(), TextCharacter.fromCharacter('X')[0]);
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public Position moveUp() {
+        return new Position(position.getX(), position.getY() - 1);
     }
-
-    public int getY() {
-        return y;
+    public Position moveDown() {
+        return new Position(position.getX(), position.getY() + 1);
     }
-
-    public void setX(int x) {
-        this.x = x;
+    public Position moveLeft() {
+        return new Position(position.getX() - 1, position.getY());
     }
-
-    public int getX() {
-        return x;
-    }
-
-    public void draw(Screen screen) {
-        this.screen.setCharacter(10, 10, TextCharacter.fromCharacter('X')[0]);
-    }
-
-    public void moveUp() {
-        y--;
-    }
-
-    public void moveDown() {
-        y++;
-    }
-
-    public void moveLeft() {
-        x--;
-    }
-
-    public void moveRight() {
-        x++;
+    public Position moveRight() {
+        return new Position(position.getX() + 1, position.getY());
     }
 }
+
